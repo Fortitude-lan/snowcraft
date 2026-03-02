@@ -29,6 +29,8 @@ export function Header() {
         { label: 'Home', href: '/' },
         { label: 'Products', href: '/products' },
         { label: 'About', href: '/about' },
+        { label: 'Review', href: '/feedback' },
+        
 
     ];
 
@@ -38,7 +40,7 @@ export function Header() {
         <header id="header" className="w-full z-9 absolute top-0 left-0 flex items-center justify-between px-8 py-4">
             {/* Logo */}
             <Link href="/" className="flex-shrink-0">
-                <Logo className="fl-h-10/20 " />
+                <Logo className="fl-h-8/14 " />
             </Link>
 
             {/* Desktop Menu */}

@@ -23,8 +23,10 @@ export const api: any = {
     addCart:'/shops/add-cart/',
     updcart:'/shops/updare-cart/',
     cartlist:'/shops/cart/',
-    delcarts:'/shops/delcarts/'
-
+    delcarts:'/shops/delcarts/',
+    reviewList:'/reviews/list',
+    proSelectList:'/reviews/products',
+    addreview:'/reviews/add',
     // 管理端接口
 
 };

@@ -220,3 +220,32 @@ export const deleteCartApi = (ids: number[]) =>
       cart_item_ids: ids,
     },
   });
+
+  // 获取评论列表（分页 + 星级筛选）
+export const getReviewListApi = (
+  page: number = 1,
+  page_size: number = 4,
+  params: {
+    rating?: number;
+    product_id?: number;
+  } = {}
+) => {
+  return http.post(api.reviewList, {
+    page,
+    page_size,
+    params,
+  });
+};
+
+// 获取产品列表（用于评论筛选）
+export const getProductSelectListApi = () => {
+  return http.get(api.proSelectList);
+};
+
+// 添加评论
+export const addReviewApi = (data: {
+  rating: number;
+  comment: string;
+  product_id: number;
+  user_id: number;
+}) => http.post(api.addreview, data);

@@ -254,3 +254,12 @@ export const addReviewApi = (data: {
 export const getReviewStatsApi = () => {
   return http.get(api.reviewStats);
 };
+
+
+export const getReviewSummaryApi = () => {
+  return http.get(api.reviewSummary);
+};
+
+export const getReviewBarDataApi = () => {
+  return http.get(api.reviewBar);
+};

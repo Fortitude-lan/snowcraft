@@ -67,7 +67,7 @@ const ProductAssetsPage = () => {
   };
 
   return (
-    <div className="flex flex-col h-[80vh]">
+    <div className="space-y-6 p-6">
       <h1 className="mb-4 text-2xl font-semibold">Product Assets</h1>
 
       {loading && <div>Loading...</div>}

@@ -11,7 +11,6 @@ export const api: any = {
     addProducts: '/product/add/',
     getAssetsList: '/product/assets/',
     updateProductStatus: '/product/update-status/',
-    statsOverview: '/stats-overview/',
     upload: '/product/upload/',
     addCustomDesign: '/product/add-design/',
     addProduct: '/product/add-product/',
@@ -27,7 +26,11 @@ export const api: any = {
     reviewList:'/reviews/list',
     proSelectList:'/reviews/products',
     addreview:'/reviews/add',
-    reviewStats:'/reviews/score'
-    // 管理端接口
+    reviewStats:'/reviews/score',
+    // admin
+    reviewSummary:'/reviews/summary',
+    statsOverview: '/stats-overview',
+    reviewBar:"/shops/month-sales"
+
 
 };

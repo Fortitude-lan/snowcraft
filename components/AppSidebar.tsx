@@ -49,15 +49,15 @@ const items = [
     url: "/admin-orders",
     icon: Calendar,
   },
-  {
-    title: "Settings",
-    url: "#",
-    icon: Settings,
-    sub: [
-      { title: "Account", url: "#" },
-      { title: "Preferences", url: "#" },
-    ]
-  },
+  // {
+  //   title: "Settings",
+  //   url: "#",
+  //   icon: Settings,
+  //   sub: [
+  //     { title: "Account", url: "#" },
+  //     { title: "Preferences", url: "#" },
+  //   ]
+  // },
 ]
 
 

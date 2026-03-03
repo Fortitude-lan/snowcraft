@@ -93,7 +93,7 @@ const OrderListPage = () => {
   const statusOptions = ["Pending", "Confirmed", "Shipped", "Completed"];
 
   return (
-    <div className="flex flex-col h-[80vh]">
+    <div className="space-y-6 p-6">
       <h1 className="text-2xl font-semibold mb-4">Orders</h1>
 
       {loading && <div>Loading...</div>}

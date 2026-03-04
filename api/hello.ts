@@ -1,3 +1,3 @@
-import http from '@/utils/axios';
+import http from '@/services/axios';
 
 export const getHello = () => http.get('/hello/');

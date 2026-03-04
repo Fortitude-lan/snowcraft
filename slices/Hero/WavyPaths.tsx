@@ -5,7 +5,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import clsx from "clsx";
 
-import { useIsSafari } from "@/lib/useIsSafari";
+import { useIsSafari } from "@/hooks/useIsSafari";
 
 gsap.registerPlugin(useGSAP);
 

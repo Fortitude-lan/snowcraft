@@ -130,13 +130,14 @@ export function ProductModel({ textureUrls, assetCode, finish = 'matte' }: Produ
 
                 // 对应顺序替换贴
                 if (!meshNode) return null
+                const mesh = meshNode as THREE.Mesh
                 const isEdge = meshNode.name.endsWith('_3') || meshNode.name.endsWith('_4')
                 let material = deckMaterial
                 if (isEdge) material = edgeMaterial
                 return (
                     <mesh
                         key={meshNode.name}
-                        geometry={meshNode.geometry}
+                        geometry={mesh.geometry}
                         material={material}
                     >
                     </mesh>

@@ -50,7 +50,7 @@ export default function AccountPage() {
     if (!user) return;
 
     try {
-      const res = await saveAddressApi(user.clerk_id, address);
+      const res: any = await saveAddressApi(user.clerk_id, address);
 
       if (res.code === 200) {
         // 更新 context user
@@ -84,9 +84,9 @@ export default function AccountPage() {
     if (user) {
       const fetchOrders = async () => {
         try {
-          const userid = JSON.parse(localStorage.getItem('userInfo'))?.id;
+          const userid = JSON.parse(localStorage.getItem('userInfo') || '{}').id;
 
-          const res = await getUserOrdersApi(userid);
+          const res: any = await getUserOrdersApi(userid);
           if (res.code === 200) {
             setOrders(res.data || []);
           } else {
@@ -144,7 +144,7 @@ export default function AccountPage() {
                     </Heading>
 
                     <p className="text-gray-600 text-sm md:text-base break-all">
-                      {user.address|| "No address set"}
+                      {user.address || "No address set"}
                     </p>
                   </div>
 
@@ -200,7 +200,7 @@ export default function AccountPage() {
           <div className="bg-white rounded-lg p-4 md:p-8 m-6">
 
             <h2 className="text-lg md:text-xl font-semibold mb-6">
-             Shipping Address
+              Shipping Address
             </h2>
 
             <div className="p-4 bg-brand-gray rounded-lg mb-6">

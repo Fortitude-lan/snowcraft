@@ -3,7 +3,7 @@
 import { SVGProps } from "react";
 import clsx from "clsx";
 
-import { useIsSafari } from "@/lib/useIsSafari";
+import { useIsSafari } from "@/hooks/useIsSafari";
 
 export function TallLogo({ className, ...props }: SVGProps<SVGSVGElement>) {
   const isSafari = useIsSafari(true);

@@ -10,7 +10,6 @@ import { Canvas } from '@react-three/fiber'
 import { useGLTF, OrbitControls, Environment, useTexture } from '@react-three/drei'
 import * as THREE from 'three'
 import { clsx } from 'clsx'
-import type { ProductModelProps } from '@/models/Product'
 
 const ENVIRONMENT_COLOR = "#969696";
 const FINISH_OPTIONS = {
@@ -138,13 +137,13 @@ export function ProductModel({ textureUrls, typeId }: ProductModelInnerProps) {
                 // 对应顺序替换贴
                 if (!meshNode) return null
                 const map = textures[0] || null
+                const node = meshNode as THREE.Mesh
                 return (
                     <mesh
-                        key={meshNode.name}
-                        geometry={meshNode.geometry}
+                        key={node.name}
+                        geometry={node.geometry}
                         material={material}
-                    >
-                    </mesh>
+                    />
                 )
             })}
         </group>

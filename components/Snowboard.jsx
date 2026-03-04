@@ -9,10 +9,9 @@ import { useGLTF, useTexture } from '@react-three/drei'
 import { useMemo } from 'react';
 import * as THREE from 'three'
 
-export function Snowboard({ topTexture, bottomColor, sideColor = "#000000", ...props }) {
+export function Snowboard() {
   const { nodes, materials } = useGLTF('/models/snowboard.glb')
-
-  const topTex = useTexture(topTexture || "/textures/headboard.png");
+  const topTex = useTexture("/textures/headboard.png");
   topTex.flipY = false; // Adjust if your texture appears upside down
   topTex.wrapS = THREE.RepeatWrapping;
   topTex.wrapT = THREE.RepeatWrapping;
@@ -39,12 +38,12 @@ export function Snowboard({ topTexture, bottomColor, sideColor = "#000000", ...p
   const EDGE_MATERIAL_CONFIG = {
     black: { color: '#171717' },
     white: { color: '#f5f5f5' },
-}
+  }
   const edgeMaterial = useMemo(() => {
     return new THREE.MeshStandardMaterial({
       ...EDGE_MATERIAL_CONFIG.black,
     })
-  }, )
+  },)
 
 
   return (

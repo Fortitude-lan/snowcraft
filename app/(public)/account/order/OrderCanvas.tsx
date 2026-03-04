@@ -224,7 +224,7 @@ function ProductModel({ textureUrl, assetCode, finish = 'matte', customText = ''
         }
     }, [decalTexture])
 
-    const deckMeshRef = useRef<THREE.Mesh>(null)
+    const deckMeshRef = useRef<THREE.Mesh>(null!)
 
     /* =======================
        RENDER

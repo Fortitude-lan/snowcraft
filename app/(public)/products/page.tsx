@@ -28,7 +28,7 @@ const Products = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize] = useState(7);
   const [totalPages, setTotalPages] = useState(1);
-  
+
 
   // ---------- 拉取产品数据 ----------
   const fetchProducts = (page = 1, filtersParam = filters) => {
@@ -39,7 +39,7 @@ const Products = () => {
     if (filtersParam.max_price !== null) params.max_price = filtersParam.max_price;
 
     getProducts({ page, page_size: pageSize, params })
-      .then((res) => {
+      .then((res: any) => {
         if (res.code === 200) {
           setDataList(res.data.list || []);
           setCurrentPage(res.data.page || 1);
@@ -125,7 +125,7 @@ const Products = () => {
 
       <div className="grid w-full grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4 mt-6">
         {dataList.map((product, idx) => (
-          <ProductItem key={`product-${product.id}`} idx={idx} data={product} noScribble/>
+          <ProductItem key={`product-${product.id}`} idx={idx} data={product} noScribble />
         ))}
       </div>
 

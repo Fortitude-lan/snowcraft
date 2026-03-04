@@ -1,5 +1,10 @@
 
 import axios from 'axios';
+interface ApiResponse<T> {
+  code: number
+  data: T
+  message: string
+}
 
 const http = axios.create({
   baseURL: '/api',
@@ -18,7 +23,7 @@ http.interceptors.request.use(config => {
 
 /* 响应拦截器 */
 http.interceptors.response.use(
-  response => response.data,
+  response => response.data as any,
   error => {
     if (error.response?.status === 401) {
       localStorage.clear();

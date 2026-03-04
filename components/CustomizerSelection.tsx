@@ -37,7 +37,7 @@ export function CustomizerSelection({
       setUploadedTextureUrl(value);
     }
     onChange(field, value);
-    setLocalFormData((prev) => ({ ...prev, [field]: value }));
+    setLocalFormData((prev: any) => ({ ...prev, [field]: value }));
   };
 
 

@@ -11,27 +11,64 @@ Snowboard Craft is a high-performance Direct-to-Consumer (DTC) e-commerce platfo
 - Responsive UI: Built with Tailwind CSS using a mobile-first approach.
 
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## 2. Tech Stack
 
-## Getting Started
+- **Framework:** Next.js 13 (App Router)
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS + shadcn/ui
+- **3D Rendering:** React Three Fiber (R3F)
+- **Animation:** GSAP + Framer Motion
+- **Charts:** Recharts
+- **Authentication:** Clerk + Custom Email Verification
+- **State Management:** React Context API
+- **HTTP Client:** Axios
 
-First, run the development server:
+---
+
+
+## 3. Project Structure
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+frontend/
+├── app/                     # Next.js App Router pages (grouped by route segment: public | auth | admin)
+│   ├── globals.css           # Global styles
+│   ├── layout.tsx            # Root layout
+│   ├── (public)/             # Public-facing pages (home, products, cart, feedback, account, about)
+│   │   ├── page.tsx          # Home page
+│   │   ├── products/         # Product pages
+│   │   ├── feedback/         # Reviews / feedback pages
+│   │   └── account/          # User account pages
+│   ├── (auth)/               # Authentication pages (sign-in, sign-up, admin login)
+│   └── (admin)/              # Admin pages (dashboard, product management, orders)
+├── api/                      # Next.js API route handlers & backend URL mappings
+│   ├── api.ts                # All backend route URLs
+│   └── auth.ts               # Auth API call functions
+├── components/               # Reusable UI components (buttons, cards, modals, etc.)
+├── contexts/                 # Global state management (React Contexts)
+├── hooks/                    # Custom React hooks
+│   ├── useMobile.ts          # Detect mobile devices
+│   └── useIsSafari.ts        # Detect Safari browser
+├── lib/                      # Pure utility functions / framework-agnostic logic
+│   ├── utils.ts              # General helper functions 
+│   └── requireAuth.ts        # Auth guard / access control logic
+├── services/                 # API communication layer (Axios instances & request helpers)
+│   └── axios.ts              # Axios instance & request helper functions
+├── slices/                   # Home page specific content blocks (Hero, ProductGrid, VideoBlock, etc.)
+└── public/                   # Static assets (images, models, textures, HDR files)
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 4. How to Run
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm install
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+
+
+
 
 ## Learn More
 

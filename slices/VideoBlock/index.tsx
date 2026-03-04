@@ -3,6 +3,7 @@ import { LazyYouTubePlayer } from "./LazyYouTubePlayer";
 import clsx from "clsx";
 import Image from "next/image";
 import { VideoBlockSlice } from "@/data/homepage";
+import { JSX } from "react";
 
 const MASK_CLASSES =
   "[mask-image:url(/video-mask.png)] [mask-mode:alpha] [mask-position:center_center] [mask-repeat:no-repeat] [mask-size:100%_auto]";

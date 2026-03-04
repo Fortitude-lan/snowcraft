@@ -41,7 +41,8 @@ export function ProductItem({ idx, data, noScribble }: any): React.ReactElement 
   const [open, setOpen] = useState(false);
 
   const [formData, setFormData] = useState<any>(null); // 保存 CustomizerSelection 的 formData
-  const userid = JSON.parse(localStorage.getItem('userInfo'))?.id;
+  const userid = JSON.parse(localStorage.getItem('userInfo') || '{}').id;
+
   const scribbleColor = SCRIBBLE_COLORS[idx % SCRIBBLE_COLORS.length];
 
   // 初始化 formData，默认选中每个选项的第一个
@@ -68,7 +69,7 @@ export function ProductItem({ idx, data, noScribble }: any): React.ReactElement 
 
     try {
       // 1️⃣ 先生成 design
-      const res = await addCustomDesignApi({
+      const res: any = await addCustomDesignApi({
         product_id: data.id,
         user_id: userid,
         p_size: formData.p_size,
@@ -87,7 +88,7 @@ export function ProductItem({ idx, data, noScribble }: any): React.ReactElement 
       const designId = res.data.id;
 
       // 2️⃣ 添加到购物车
-      const cartRes = await addCartApi(
+      const cartRes: any = await addCartApi(
         userid,
         designId,
         1, // 默认数量
@@ -132,7 +133,7 @@ export function ProductItem({ idx, data, noScribble }: any): React.ReactElement 
         p_textures: formData.p_img || [],
       });
 
-      if (designRes.code !== 200) {
+      if (designRes.data.code !== 200) {
         toast.error("Failed to create design");
         return;
       }
@@ -146,7 +147,7 @@ export function ProductItem({ idx, data, noScribble }: any): React.ReactElement 
       const totalPrice = quantity * unitPrice;
 
       // 3️⃣ 调用订单接口
-      const orderRes = await addOrderApi({
+      const orderRes: any = await addOrderApi({
         user_id: userid, // TODO: replace with actual user ID
         total_price: totalPrice,
         order_status: "Pending",

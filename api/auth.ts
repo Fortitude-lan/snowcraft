@@ -1,4 +1,4 @@
-import http from '@/utils/axios';
+import http from '@/services/axios';
 import { api } from './api';
 
 export const authApi = {

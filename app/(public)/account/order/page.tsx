@@ -28,16 +28,26 @@ type OrderItemData = {
     product: {
         id: number;
         name: string;
+        asset_code?: string;
+        is_double_sided?: boolean;
     } | null;
     quantity: number;
     unit_price: string;
     design_id: {
         id: number;
-    }
+    };
+    design?: {
+        p_size?: string;
+        p_finish?: string;
+        p_flex?: string;
+        p_textures?: string;
+    };
+    p_finish?: string;
 };
 
 type OrderData = {
     order_id: number;
+    order_number: string;
     total_price: string;
     order_status: string;
     created_at: string;
@@ -57,9 +67,9 @@ export default function AccountPage() {
         if (user) {
             const fetchOrders = async () => {
                 try {
-                    const userid = JSON.parse(localStorage.getItem('userInfo'))?.id;
+                    const userid = JSON.parse(localStorage.getItem('userInfo') || '{}').id;
 
-                    const res = await getUserOrdersApi(userid);
+                    const res:any = await getUserOrdersApi(userid);
                     if (res.code === 200) {
                         setOrders(res.data || []);
                     } else {
@@ -251,7 +261,7 @@ export default function AccountPage() {
                                             <OrderConvas
                                                 assetCode={selectedItem?.product?.asset_code || ""}
                                                 finish={selectedItem?.p_finish || ""}
-                                                textureUrl={selectedItem?.design.p_textures}
+                                                textureUrl={selectedItem?.design?.p_textures || ""}
                                                 isDoubleSided={selectedItem.product?.is_double_sided}
                                                 orbitControls={true}
                                                 className="h-full w-full"

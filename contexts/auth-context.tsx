@@ -19,6 +19,7 @@ type AuthContextType = {
   user: User | null;
   token: string | null;
   loginAdmin: (data: { username: string; password: string }) => Promise<void>;
+  logoutAdmin: () => void;
   loginUser: (email: string, code: string) => Promise<void>;
   loginUserFromData: (userData: User) => void;
   logout: () => void;
@@ -51,7 +52,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     if (!email) return;
 
     try {
-      const res = await syncUserApi({
+      const res: any = await syncUserApi({
         id: clerk_id,
         email,
         name,
@@ -78,7 +79,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   */
   const loginAdmin = async (data: { username: string; password: string }) => {
     try {
-      const res = await adminloginApi(data);
+      const res:any = await adminloginApi(data);
 
       // 保存 token 到 localStorage
       localStorage.setItem('Token', res.access);

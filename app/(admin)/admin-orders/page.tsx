@@ -27,6 +27,7 @@ type OrderItem = {
 
 type Order = {
   order_id: number;
+  order_number: string;
   total_price: string;
   order_status: string;
   created_at: string;

@@ -2,11 +2,9 @@
 import type { Metadata } from "next";
 import { ClerkProvider } from "@clerk/nextjs";
 import { AuthProvider } from '@/contexts/auth-context';
-import PaypalProvider from "@/contexts/paypal-providers";
 import { Toaster } from "@/components/ui/sonner"
 import { Bowlby_One_SC, DM_Mono } from "next/font/google";
 import "./globals.css";
-import { Leva } from "leva";
 
 const bowlby = Bowlby_One_SC({
   subsets: ["latin"],
@@ -40,18 +38,10 @@ export default function RootLayout({
           suppressHydrationWarning
         >
           <AuthProvider>
-            {/* <CartProvider> */}
-            <PaypalProvider
-              options={{
-                "client-id": process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID,
-                currency: "USD",
-              }}
-            >
-              <main className="relative">
-                {children}
-              </main>
-            </PaypalProvider>
-            {/* </CartProvider> */}
+          
+            <main className="relative">
+              {children}
+            </main>
           </AuthProvider>
           <Toaster richColors={true} />
         </body>

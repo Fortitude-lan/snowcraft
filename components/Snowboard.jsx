@@ -47,7 +47,7 @@ export function Snowboard() {
 
 
   return (
-    <group {...props} dispose={null}>
+    <group dispose={null}>
       <group position={[0, 0.012, 0]}>
         <mesh geometry={nodes.snowboard_rocker_1.geometry} material={topMaterial} />
         <mesh geometry={nodes.snowboard_rocker_2.geometry} material={topMaterial} />

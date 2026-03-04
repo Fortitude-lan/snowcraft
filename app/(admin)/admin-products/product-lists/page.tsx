@@ -127,7 +127,7 @@ const ProductListPage = () => {
     }
 
     try {
-      const res = await addProductApi(formData);
+      const res: any = await addProductApi(formData);
 
       if (res?.data?.id) {
         toast.success("Product created successfully!");

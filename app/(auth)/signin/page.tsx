@@ -27,7 +27,7 @@ export default function SignInPage() {
         if (!email || !code) return setMessage('请输入验证码');
         try {
             // 调用接口
-            const res = await authApi.loginOrRegister(email, code);
+            const res: any = await authApi.loginOrRegister(email, code);
             const userData = res.data; // 后端返回的用户信息
 
             if (!userData) throw new Error("未返回用户信息");

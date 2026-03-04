@@ -118,7 +118,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
    * 前台邮箱验证码登录/注册
    */
   const loginUser = async (email: string, code: string) => {
-    const res = await authApi.loginOrRegister(email, code);
+    const res: any = await authApi.loginOrRegister(email, code);
     const userData: User = res.data?.data;
     if (!userData) throw new Error('未返回用户信息');
     setUser(userData);

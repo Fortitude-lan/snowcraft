@@ -42,7 +42,7 @@ export default function DashboardPage() {
 
   const fetchStats = async () => {
     try {
-      const res = await getStatsOverview();
+      const res: any = await getStatsOverview();
       const data = res.data || {};
       setStats({
         user_count: data.user_count || 0,
@@ -56,7 +56,7 @@ export default function DashboardPage() {
 
   const fetchBarData = async () => {
     try {
-      const res = await getReviewBarDataApi()
+      const res: any = await getReviewBarDataApi()
       if (res.code === 200 && res.data) {
         // res.data 是对象，需要转成数组 [{ month: 1, sales: n }, ...]
         const dataArray = Object.entries(res.data).map(([month, sales]) => ({
@@ -73,7 +73,7 @@ export default function DashboardPage() {
 
   const fetchPieData = async () => {
     try {
-      const res = await getReviewSummaryApi()
+      const res: any = await getReviewSummaryApi()
       if (res.code === 200) {
         setSummary(res.data)
       }
@@ -89,7 +89,7 @@ export default function DashboardPage() {
     fetchBarData();
     fetchPieData();
   }, []);
-  const currentYear = new Date().getFullYear() 
+  const currentYear = new Date().getFullYear()
 
   const COLORS = ["#22c55e", "#facc15", "#ef4444"] // green / yellow / red
 

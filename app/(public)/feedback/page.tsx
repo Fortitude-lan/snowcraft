@@ -50,7 +50,7 @@ export default function ReviewPage() {
   const fetchReviews = useCallback(
     async (pageNum: number = 1, rating?: number | "all") => {
       setLoading(true);
-      const res = await getReviewListApi(
+      const res: any = await getReviewListApi(
         pageNum,
         PAGE_SIZE,
         rating && rating !== "all" ? { rating } : {}

@@ -37,7 +37,7 @@ const ProductAssetsPage = () => {
         setLoading(true);
         setError(null);
 
-        const res = await getAssetsList({ page, page_size: PAGE_SIZE });
+        const res: any = await getAssetsList({ page, page_size: PAGE_SIZE });
         const data = res?.data;
         // 后端返回格式:
         // {

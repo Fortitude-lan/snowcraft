@@ -8,8 +8,8 @@ export function proxy(request: NextRequest) {
   // 1. 拦截所有 /api 开头的请求
   if (pathname.startsWith('/api/')) {
     // 2. 构造 Django 完整 URL
-    // const DJANGO_BASE = process.env.NEXT_PUBLIC_API_BASE || 'http://127.0.0.1:8787';
-    const DJANGO_BASE = process.env.NEXT_PUBLIC_API_BASE || 'https://snowcraft-django-app.onrender.com';
+    const DJANGO_BASE = process.env.NEXT_PUBLIC_API_BASE || 'http://127.0.0.1:8787';
+    // const DJANGO_BASE = process.env.NEXT_PUBLIC_API_BASE || 'https://snowcraft-django-app.onrender.com';
 
     const targetUrl = new URL(pathname, DJANGO_BASE);
 

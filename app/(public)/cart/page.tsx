@@ -35,7 +35,7 @@ const Cart = () => {
     try {
       const userId = JSON.parse(localStorage.getItem("userInfo"))?.id;
       userIdRef.current = userId;
-      const res = await getUserCartApi(userId);
+      const res: any = await getUserCartApi(userId);
       if (res.code === 200) {
         setCart(res.data);
         setSelectedItems([]);

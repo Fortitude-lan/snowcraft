@@ -79,11 +79,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   */
   const loginAdmin = async (data: { username: string; password: string }) => {
     try {
-      const res:any = await adminloginApi(data);
+      const res: any = await adminloginApi(data);
 
       // 保存 token 到 localStorage
       localStorage.setItem('Token', res.access);
       localStorage.setItem('RefreshToken', res.refresh);
+
 
       // 更新 context
       setToken(res.access);
@@ -106,6 +107,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     localStorage.removeItem('Token');
     localStorage.removeItem('RefreshToken');
     localStorage.removeItem('User');
+    localStorage.removeItem('userInfo');
+    localStorage.removeItem('clerkSyncedId');
 
     setToken(null);
     setUser(null);
@@ -131,8 +134,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   const logout = () => {
+    localStorage.removeItem('Token');
+    localStorage.removeItem('RefreshToken');
+    localStorage.removeItem('User');
     localStorage.removeItem('userInfo');
     localStorage.removeItem('clerkSyncedId');
+    setToken(null);
     setUser(null);
     router.replace('/sign-in');
   };

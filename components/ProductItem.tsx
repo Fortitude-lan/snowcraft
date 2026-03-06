@@ -124,7 +124,7 @@ export function ProductItem({ idx, data, noScribble }: any): React.ReactElement 
 
     try {
       // 1️⃣ 先创建定制
-      const designRes = await addCustomDesignApi({
+      const designRes: any = await addCustomDesignApi({
         product_id: data.id,
         user_id: userid, // TODO: replace with actual user ID
         p_size: formData.p_size,
@@ -133,14 +133,14 @@ export function ProductItem({ idx, data, noScribble }: any): React.ReactElement 
         p_textures: formData.p_img || [],
       });
 
-      if (designRes.data.code !== 200) {
+      if (designRes.code !== 200) {
         toast.error("Failed to create design");
         return;
       }
 
       const designId = designRes.data.id;
       const productId = designRes.data.product_id;
-
+   
       // 2️⃣ 计算总价
       const quantity = formData.quantity || 1;
       const unitPrice = data.price; // 假设 product 里有 price

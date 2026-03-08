@@ -91,7 +91,7 @@ export function ProductItem({ idx, data, noScribble }: any): React.ReactElement 
       const cartRes: any = await addCartApi(
         userid,
         designId,
-        1, // 默认数量
+        formData.quantity, // 默认数量
         data.price // ⚠️ 确保 product 有 price
       );
 

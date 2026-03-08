@@ -30,8 +30,8 @@ export function CustomizerSelection({
   // }, [formData?.p_textures]);
 
   const handleFormChange = (field: string, value: any) => {
-    console.log(value)
-    debugger
+    // console.log(value)
+    // debugger
     if (field === "p_img" && isTextureUrl(String(value)) && !presetTextures?.includes(value)) {
       // 只有当选中的 URL 不是预设纹理时，才更新 uploadedTextureUrl
       setUploadedTextureUrl(value);

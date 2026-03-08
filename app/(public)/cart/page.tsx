@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { Bounded } from "@/components/Bounded";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -35,6 +35,15 @@ const Cart = () => {
   const [cart, setCart] = useState<CartItem[]>([]);
   const [selectedItems, setSelectedItems] = useState<number[]>([]);
   const userIdRef = useRef<number | null>(null);
+  const [selectedTotal, setSelectedTotal] = useState('0.00');
+  useEffect(() => {
+    const total = cart
+      .filter(item => selectedItems.includes(item.cart_item_id))
+      .reduce((sum, item) => sum + parseFloat(item.unit_price) * item.quantity, 0)
+      .toFixed(2);
+    setSelectedTotal(total);
+    console.log(total)
+  }, [cart, selectedItems]);
 
   const fetchCart = async () => {
     try {
@@ -170,12 +179,7 @@ const Cart = () => {
   const getTotal = () =>
     cart.reduce((sum, item) => sum + parseFloat(item.unit_price) * item.quantity, 0).toFixed(2);
 
-  const getSelectedTotal = () =>
-    cart
-      .filter(item => selectedItems.includes(item.cart_item_id))
-      .reduce((sum, item) => sum + parseFloat(item.unit_price) * item.quantity, 0)
-      .toFixed(2);
-
+  
   return (
     <Bounded className="bg-brand-gray p-8">
 
@@ -218,8 +222,10 @@ const Cart = () => {
                     className="border-gray-900 border-2"
                     id={`cart-${item.cart_item_id}`}
                     checked={selectedItems.includes(item.cart_item_id)}
-                    onCheckedChange={() =>
+                    onCheckedChange={() => {
+                      // console.log('Item ID:', item.cart_item_id)
                       toggleSelectItem(item.cart_item_id)
+                    }
                     }
                   />
                 </div>
@@ -295,17 +301,17 @@ const Cart = () => {
                 </div>
               </div>
             ))}
-            <div className="text-right mt-6 text-xl font-bold">
+            {/* <div className="text-right mt-6 text-xl font-bold">
               Total: £{getTotal()}
-            </div>
+            </div> */}
             <div className="text-right mt-2 text-lg font-semibold">
-              Selected Total: £{getSelectedTotal()}
+              Selected Total: £{selectedTotal}
             </div>
 
             <div className="text-right mt-4 flex justify-end gap-4">
-              <Button onClick={() => removeItems(cart.map(i => i.cart_item_id))}>
+              {/* <Button onClick={() => removeItems(cart.map(i => i.cart_item_id))}>
                 Clear Cart
-              </Button>
+              </Button> */}
               <Button
                 disabled={selectedItems.length === 0}
                 onClick={checkoutSelected}

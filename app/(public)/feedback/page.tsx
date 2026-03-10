@@ -137,14 +137,14 @@ export default function ReviewPage() {
               ))}
 
               <div className="ml-auto text-[0.8rem] text-zinc-600 self-center gap-2 justify-center flex items-center">
-                {!loading && !isAll && (
+                {loading && isAll ? <div></div> : (
                   <div className="flex justify-center gap-1 px-2">
                     <button
                       onClick={handlePrevPage}
                       disabled={page === 1}
                     >
                       <FaCaretLeft className="text-lg"
-                        onClick={handlePrevPage}
+                      // onClick={handlePrevPage}
                       />
                     </button>
                     <span className="py-1 text-[0.8rem]">
@@ -155,7 +155,7 @@ export default function ReviewPage() {
                       disabled={page * PAGE_SIZE >= total}
                     >
                       <FaCaretRight className="text-lg"
-                        onClick={handleNextPage}
+                      // onClick={handleNextPage}
                       />
                     </button>
                   </div>

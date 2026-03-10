@@ -6,6 +6,7 @@ import Link from "next/link";
 import { Logo } from '../Logo';
 import { LogOutIcon, ShoppingCart } from 'lucide-react';
 import { useAuth } from '@/contexts/auth-context';
+import { usePathname } from "next/navigation"; // Next.js App Router 获取当前路径
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -14,10 +15,12 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import CustomModal from "@/components/HeroModal";
-import { Button } from '../ui/button';
+import { motion as m } from "framer-motion";
 
 
 export function Header() {
+    const pathname = usePathname(); // 替代 React Router 的 useLocation
+
     const { user, logout } = useAuth();
     const { signOut } = useClerk();
     const [open, setOpen] = useState(false); // For SignIn modal
@@ -50,12 +53,14 @@ export function Header() {
                     <a
                         key={item.label}
                         href={item.href}
-                        className="text-gray-700 hover:text-amber-700 transition text-lg"
+                        className="text-gray-700 hover:text-brand-orange transition text-lg relative flex items-center justify-center"
                     >
-                        {item.label}
+
+                      {item.label} {pathname === item.href && <CurrentMark />}
                     </a>
                 ))}
             </nav>
+
 
             {/* Right Icons */}
             <div className="flex items-center gap-2">
@@ -110,7 +115,7 @@ export function Header() {
                     <SignedIn>
                         <DropdownMenu>
                             <DropdownMenuTrigger asChild>
-                                <span  role="button" className='cursor-pointer text-lg'>Hi,&nbsp;{firstName}</span>
+                                <span role="button" className='cursor-pointer text-lg'>Hi,&nbsp;{firstName}</span>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent>
                                 <DropdownMenuGroup>
@@ -232,3 +237,26 @@ export function Header() {
     );
 };
 
+const CurrentMark = () => {
+  return (
+    <svg
+      className="absolute -top-3 -left-2 right-0 bottom-0 w-[130%] h-[40px] pointer-events-none"
+      viewBox="0 0 108 40"
+      preserveAspectRatio="none"
+      fill="none"
+    >
+      <m.path
+        initial={{ pathLength: 0 }}
+        animate={{ pathLength: 1 }}
+        transition={{
+          delay: 2,
+          duration: 0.75,
+          ease: "easeInOut",
+        }}
+        stroke="var(--color-brand-orange)"
+        strokeWidth="3"
+        d="M68 1C55 13 3.5 12.9 1.5 24.5C-1 39 39.9808 39.5 46.5 39.5C68 39.5 98.9231 39.5 105.5 30C110.204 23.2052 104.5 16 85 15C65.5 14 50.6667 11.1667 39.5 4.5"
+      />
+    </svg>
+  );
+};

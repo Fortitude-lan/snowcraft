@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import { usePathname } from "next/navigation"; // Next.js App Router 获取当前路径
 import { AnimatePresence, motion } from "framer-motion";
 

@@ -55,6 +55,8 @@ export function ProductItem({ idx, data, noScribble }: any): React.ReactElement 
   });
 
   useEffect(() => {
+    // console.log(data)
+    // debugger
     if (data) {
       setFormData(initFormData());
     }

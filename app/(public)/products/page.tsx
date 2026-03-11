@@ -26,7 +26,7 @@ const Products = () => {
   });
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [pageSize] = useState(7);
+  const [pageSize] = useState(8);
   const [totalPages, setTotalPages] = useState(1);
 
 

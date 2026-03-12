@@ -117,7 +117,7 @@ export function ProductItem({ idx, data, noScribble }: any): React.ReactElement 
   // 下单 / 支付逻辑
   // --------------------------
   const onPay = async (formData: any) => {
-     if (!user) {
+    if (!user) {
       toast.error("Please log in to place an order.");
       return;
     }
@@ -150,7 +150,7 @@ export function ProductItem({ idx, data, noScribble }: any): React.ReactElement 
 
       const designId = designRes.data.id;
       const productId = designRes.data.product_id;
-   
+
       // 2️⃣ 计算总价
       const quantity = formData.quantity || 1;
       const unitPrice = data.price; // 假设 product 里有 price
@@ -221,7 +221,7 @@ export function ProductItem({ idx, data, noScribble }: any): React.ReactElement 
         {data.name}
       </h3>
 
-      <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+      <div className="absolute inset-0 flex items-center justify-center md:opacity-0 transition-opacity duration-200 group-hover:opacity-100">
         <Drawer direction="right" dismissible={false}
           open={open}
           onOpenChange={(val) => setOpen(val)}>
@@ -241,7 +241,7 @@ export function ProductItem({ idx, data, noScribble }: any): React.ReactElement 
             </button>
           </DrawerTrigger>
 
-          <DrawerContent className="w-[90vw]" >
+          <DrawerContent className="w-full md:w-[90vw]" >
             <DrawerHeader>
               <DrawerTitle>Customizer Modal <span className="text-[0.75rem] font-light">(Drag with mouse to rotate model, scroll to zoom, click texture buttons to change board surface material)</span></DrawerTitle>
               <DrawerDescription>Configure your snowboard! </DrawerDescription>

@@ -33,7 +33,7 @@ const ProductGrid = ({ slice }: { slice: ProductGridSlice }) => {
           {slice.body.map((p, i) => <p key={i}>{p.text}</p>)}
         </div>
       </SlideIn>
-      <div className="grid w-full grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+      <div className="grid w-full grid-cols-1  gap-2 md:gap-4 sm:grid-cols-2 lg:grid-cols-4" >
         {hotList.map((product, idx) => (
           <ProductItem key={product.id} idx={idx} data={product} />
         ))}

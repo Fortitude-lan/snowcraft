@@ -68,7 +68,7 @@ export function ProductItem({ idx, data, noScribble }: any): React.ReactElement 
   // --------------------------
   const onAddToCart = async (formData: any) => {
     if (!user) {
-      toast.error("Please log in to add items to your cart.");
+      toast.warning("Please log in to add items to your cart.");
       return;
     }
     if (!formData) return;
@@ -118,7 +118,7 @@ export function ProductItem({ idx, data, noScribble }: any): React.ReactElement 
   // --------------------------
   const onPay = async (formData: any) => {
     if (!user) {
-      toast.error("Please log in to place an order.");
+      toast.warning("Please log in to place an order.");
       return;
     }
     if (!formData) return;
@@ -126,7 +126,7 @@ export function ProductItem({ idx, data, noScribble }: any): React.ReactElement 
 
     // ✅ 地址校验
     if (!userAddress) {
-      toast.error("Please add your shipping address in your profile before placing an order.");
+      toast.warning("Please add your shipping address in your profile before placing an order.");
       return; // 终止下单
     }
 

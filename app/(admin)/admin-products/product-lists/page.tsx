@@ -41,7 +41,7 @@ type Product = {
   p_flex: string;
   p_desc: string;
   p_finish: string;
-  asset?: Asset[]; // 新增字段
+  asset?: Asset; // 新增字段
 };
 
 type Asset = {
@@ -206,7 +206,7 @@ const ProductListPage = () => {
                   </TableCell>
                   <TableCell>{p.p_size}</TableCell>
                   <TableCell>{p.p_finish}</TableCell>
-                  <TableCell>{p.asset?.[0]?.type || ""} [{p.asset?.[0]?.asset_code || ""}]</TableCell>
+                  <TableCell>{p.asset?.asset_code || "--"}</TableCell>
                 </TableRow>
               ))}
               {products.length === 0 && (

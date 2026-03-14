@@ -72,7 +72,7 @@ const OrderListPage = () => {
     fetchOrders();
   }, [page]);
 
-  const handleStatusChange = async (orderId: number, newStatus: string) => {
+  const handleStatusChange = async (orderId: number, orderNumber: string, newStatus: string) => {
     try {
       const res: any = await updateOrderStatusApi(orderId, newStatus);
       if (res?.code === 200) {
@@ -81,7 +81,7 @@ const OrderListPage = () => {
             o.order_id === orderId ? { ...o, order_status: newStatus } : o
           )
         );
-        toast.success(`Order ${orderId} status updated to ${newStatus}`);
+        toast.success(`OrderID: ${orderNumber}  ->  ${newStatus}`);
       } else {
         toast.error(res?.message || "Failed to update status");
       }
@@ -124,7 +124,17 @@ const OrderListPage = () => {
                 <TableCell>
                   <NativeSelect
                     value={o.order_status}
-                    onChange={(e) => handleStatusChange(o.order_id, e.target.value)}
+                    onChange={(e) => handleStatusChange(o.order_id, o.order_number, e.target.value)}
+                    className={`font-semibold ${o.order_status === "Pending"
+                        ? "text-yellow-500"
+                        : o.order_status === "Confirmed"
+                          ? "text-blue-500"
+                          : o.order_status === "Shipped"
+                            ? "text-purple-500"
+                            : o.order_status === "Completed"
+                              ? "text-green-500"
+                              : "text-gray-500"
+                      }`}
                   >
                     {statusOptions.map((status) => (
                       <NativeSelectOption key={status} value={status}>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { getStatsOverview, getReviewSummaryApi, getReviewBarDataApi } from "@/api/auth";
 import { Label, Pie, PieChart, Bar, BarChart, CartesianGrid, XAxis } from "recharts"
 
@@ -27,11 +27,6 @@ interface ReviewSummary {
   total: number,
 }
 export default function DashboardPage() {
-  const [stats, setStats] = useState<Stats>({
-    user_count: 0,
-    product_count: 0,
-    order_count: 0,
-  });
   const [summary, setSummary] = useState<ReviewSummary>({
     positive: 1,
     neutral: 1,
@@ -40,19 +35,6 @@ export default function DashboardPage() {
   });
   const [barData, setBarData] = useState<MonthlySales[]>([])
 
-  const fetchStats = async () => {
-    try {
-      const res: any = await getStatsOverview();
-      const data = res.data || {};
-      setStats({
-        user_count: data.user_count || 0,
-        product_count: data.product_count || 0,
-        order_count: data.order_count, // temporary mock data
-      });
-    } catch (e) {
-      console.error("Failed to load stats", e);
-    }
-  };
 
   const fetchBarData = async () => {
     try {
@@ -83,9 +65,6 @@ export default function DashboardPage() {
     }
   }
   useEffect(() => {
-
-
-    fetchStats();
     fetchBarData();
     fetchPieData();
   }, []);
@@ -125,20 +104,7 @@ export default function DashboardPage() {
     <div className="space-y-6 p-6">
       <h1 className="text-2xl font-semibold">Dashboard</h1>
 
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-        <div className="rounded-lg border bg-card p-4 shadow-sm">
-          <div className="text-sm text-muted-foreground">Users</div>
-          <div className="mt-2 text-2xl font-bold">{stats.user_count}</div>
-        </div>
-        <div className="rounded-lg border bg-card p-4 shadow-sm">
-          <div className="text-sm text-muted-foreground">Products</div>
-          <div className="mt-2 text-2xl font-bold">{stats.product_count}</div>
-        </div>
-        <div className="rounded-lg border bg-card p-4 shadow-sm">
-          <div className="text-sm text-muted-foreground">Orders</div>
-          <div className="mt-2 text-2xl font-bold">{stats.order_count}</div>
-        </div>
-      </div>
+      <StatsOverview />
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         <div className="flex flex-col rounded-lg border bg-card p-4 shadow-sm">
@@ -223,6 +189,58 @@ export default function DashboardPage() {
               </BarChart>
             </ChartContainer>
           </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+
+function StatsOverview() {
+  const [stats, setStats] = useState<Stats>({
+    user_count: 0,
+    product_count: 0,
+    order_count: 0,
+  });
+
+  useEffect(() => {
+    const fetchStats = async () => {
+      try {
+        const res: any = await getStatsOverview();
+
+        if (res.code === 200 && res.data) {
+          setStats({
+            user_count: Number(res.data.user_count) || 0,
+            product_count: Number(res.data.product_count) || 0,
+            order_count: Number(res.data.order_count) || 0,
+          });
+        }
+      } catch (err) {
+        console.error("Failed to load stats", err);
+      }
+    };
+
+    fetchStats();
+  }, []);
+
+  return (
+    <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+      <div className="rounded-lg border bg-card p-4 shadow-sm">
+        <div className="text-sm text-muted-foreground">Users</div>
+        <div key={stats.user_count} className="mt-2 text-2xl font-bold">
+          {stats.user_count}
+        </div>
+      </div>
+      <div className="rounded-lg border bg-card p-4 shadow-sm">
+        <div className="text-sm text-muted-foreground">Products</div>
+        <div key={stats.product_count} className="mt-2 text-2xl font-bold">
+          {stats.product_count}
+        </div>
+      </div>
+      <div className="rounded-lg border bg-card p-4 shadow-sm">
+        <div className="text-sm text-muted-foreground">Orders</div>
+        <div key={stats.order_count} className="mt-2 text-2xl font-bold">
+          {stats.order_count}
         </div>
       </div>
     </div>

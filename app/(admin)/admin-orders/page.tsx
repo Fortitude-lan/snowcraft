@@ -105,7 +105,7 @@ const OrderListPage = () => {
           <TableHeader>
             <TableRow>
               <TableHead className="w-[80px]">Order ID</TableHead>
-              <TableHead>Customer</TableHead>
+              <TableHead>Address</TableHead>
               <TableHead>Email</TableHead>
               <TableHead>Total (£)</TableHead>
               <TableHead>Status</TableHead>
@@ -118,10 +118,14 @@ const OrderListPage = () => {
             {orders.map((o) => (
               <TableRow key={o.order_id}>
                 <TableCell className="font-medium">{o.order_number}</TableCell>
-                <TableCell>{o.address || "N/A"}</TableCell>
-                <TableCell>{o.email || "N/A"}</TableCell>
+                <TableCell className="max-w-[100px] truncate" title={o.address}>
+                  {o.address || "N/A"}
+                </TableCell>
+                <TableCell className="max-w-[120px] truncate" title={o.email}>
+                  {o.email || "N/A"}
+                </TableCell>
                 <TableCell>{o.total_price}</TableCell>
-                <TableCell>
+                <TableCell className="max-w-[150px]">
                   <NativeSelect
                     value={o.order_status}
                     onChange={(e) => handleStatusChange(o.order_id, o.order_number, e.target.value)}
